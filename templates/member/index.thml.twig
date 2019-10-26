@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre espace{% endblock %}
+
+{% block body %}
+    <h1>Votre espace</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>Location</th>
+                <th>RegisteredAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            <tr>
+                <td>{{ app.user_dev.id }}</td>
+                <td>{{ app.user_dev.firstName }}</td>
+                <td>{{ app.user_dev.lastName }}</td>
+                <td>{{ user_dev.email }}</td>
+                <td>{{ user_dev.location }}</td>
+                <td>{{ user_dev.registeredAt ? user_dev.registeredAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('user_dev_show', {'id': user_dev.id}) }}">show</a>
+                    <a href="{{ path('user_dev_edit', {'id': user_dev.id}) }}">edit</a>
+                </td>
+            </tr>
+       
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_dev_new') }}">Create new</a>
+{% endblock %}
