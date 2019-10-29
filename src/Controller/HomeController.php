@@ -12,32 +12,37 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
 
-
     /**
     * @Route("/", name="home")
     */
     public function index(Request $request, ContactNotification $notification)
     {
-        
         $form = $this->createForm(ContactType::class);
-
-  
-       
-        if ($form->isSubmitted() && $form->isValid()) {
-            $contact = new Contact();
-            dump($contact);
-            $form->handleRequest($request);
-            $notification->notify($contact);
-            $this->addFlash('success', 'Votre message a bien été envoyé !');
-            return $this->redirectToRoute('home');
-           
-        }
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'form' => $form->createView()
         ]);
+        
+        $contact = new Contact();   
+        dd($contact);
+        dump($notification);
+
+        $form->handleRequest($request);
+       
+        if ($form->isSubmitted() && $form->isValid()) {
+          
+            
+            $notification->notify($contact);
+     
+            $this->addFlash('success', 'Votre message a bien été envoyé !');
+            return $this->redirectToRoute('home');
+           
+        }
     }
 
     
-   
 }
+    
+   
+
+

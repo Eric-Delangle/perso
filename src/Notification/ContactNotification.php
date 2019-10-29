@@ -10,8 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ContactNotification 
 {
-
-    /**
+ /**
      * @var \Swift Mailer
      */
     private $mailer;
@@ -26,8 +25,10 @@ class ContactNotification
         $this->renderer = $renderer;
     }
 
-   
-    public function notify(Contact $contact) {
+    /**
+     * @Route("/", name="home")
+     */
+    public function notify() {
       
         $message = (new \Swift_Message())
             ->setFrom('copeauxdecouleurs@gmail.com')
@@ -35,14 +36,12 @@ class ContactNotification
             ->setReplyTo($contact->getEmail())
             ->setBody(
                 $this->renderer->render(
-                    "home/index.html.twig", [
-                        'contact' => $contact
-                    ]),
+                    "emails/contact.html.twig"),
                 'text/html'
             )
     
         ;
-    dump($message);
+    
         $this->mailer->send($message);
     
         return $this->render('home/index.html.twig');

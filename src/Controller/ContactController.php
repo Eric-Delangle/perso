@@ -35,10 +35,10 @@ class ContactController extends AbstractController
         $message = (new \Swift_Message())
             ->setFrom('infos@avenuedesartistes.com')
             ->setTo('polvu@hotmail.fr')
-            //->setReplyTo($contact->getEmail())
+            ->setReplyTo($contact->getEmail())
             ->setBody(
                 $this->renderer->render(
-                    "home/index.html.twig"),
+                    "emails/contact.html.twig"),
                 'text/html'
             )
     
