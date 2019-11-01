@@ -8,37 +8,56 @@ use App\Notification\ContactNotification;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Swift;
 
 class HomeController extends AbstractController
 {
+    /**
+     * @var \Swift Mailer
+     */
+    private $mailer;
+    
+
+    public function __construct(\Swift_Mailer $mailer) {
+        $this->mailer = $mailer;
+    }
+
 
     /**
     * @Route("/", name="home")
     */
-    public function index(Request $request, ContactNotification $notification)
+    public function index(Request $request)
     {
-        $form = $this->createForm(ContactType::class);
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-            'form' => $form->createView()
-        ]);
+        $contact = new Contact();
+        $form = $this->createForm(ContactType::class, $contact);
         
-        $contact = new Contact();   
-        dd($contact);
-        dump($notification);
-
+    
         $form->handleRequest($request);
-       
-        if ($form->isSubmitted() && $form->isValid()) {
-          
+        
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $message = (new \Swift_Message($contact))
+            ->setFrom('info@ericdelangle.fr')
+            ->setTo('polvu@hotmail.fr')
+            ->setSubject($contact->getSubject())
+            ->setReplyTo($contact->getEmail())
+            ->setBody($contact->getMessage(),'text/html')
+        ;
+   
+        $this->addFlash('success', 'Votre message a bien été envoyé !');
+        $this->mailer->send($message);
             
-            $notification->notify($contact);
-     
-            $this->addFlash('success', 'Votre message a bien été envoyé !');
             return $this->redirectToRoute('home');
            
         }
-    }
+ 
+        return $this->render('home/index.html.twig', [
+            'controller_name' => 'HomeController',
+            'form' => $form->createView()
+        ]);   
+        
+        }
+      
 
     
 }

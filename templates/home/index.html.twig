@@ -17,6 +17,7 @@
         </li>
         <li><a href="#about">Mon parcours</a></li>
         <li><a href="#works">Travaux réalisés<script></script></a></li>
+        <li><a href="https://github.com/Eric-Delangle">Github<script></script></a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -25,22 +26,27 @@
 
   <!-- intro area -->
   <div id="intro">
-
+      
     <div class="intro-text">
+      
       <div class="container">
         <div class="row">
-
 
           <div class="col-md-12">
 
             <div class="brand">
-              <h1><a href="index.html">Eric Delangle</a></h1>
+                
+              <h1>Eric Delangle</h1>
               <div class="line-spacer"></div>
-              <p><span class="texte_gris">Développeur d'application web</span></p>
+              <p><span class="texte_gris">Développeur d'applications web</span></p>
+              
             </div>
+            
           </div>
+          
         </div>
       </div>
+      <img class="portrait" src="{{ asset('img/17.png') }}" alt="" />
     </div>
 
   </div>
@@ -56,7 +62,7 @@
           <div class="section-heading">
             <h2>A propos</h2>
             <p>C'est après avoir créé mes propres sites persos au fil de mes activités de peintre que je suis arrivé au développement.</p>
-            <p>J'exerce maintenant mon activité de freelance en tant que développeur.</p>
+            <p>J'exerce maintenant mon activité de développeur et illustrateur en freelance.</p>
           </div>
         </div>
       </div>
@@ -129,7 +135,7 @@
         <div class="col-md-offset-2 col-md-8">
           <div class="section-heading">
             <h2>Mes réalisations</h2>
-            <p>Que du bon boulot.</p>
+            <p>Quatre projets de formation et un projet perso (Symfony).</p>
           </div>
         </div>
       </div>
@@ -138,12 +144,12 @@
 
           <ul class="lb-album">
             <li>
-              <a href="{{ asset('img/works/thumbs/1.png') }}">
-								<img src="#" alt="">
+              <a href="http://www.ericdelangle.com/webagency">
+								<img src="{{ asset('img/works/thumbs/1.png') }}" alt="">
 								<span>html/css</span>
 							</a>
               <div class="lb-overlay" id="image-1">
-                <a href="#page" class="lb-close">X</a>
+                <a href="{{ path('home') }}" class="lb-close">X Fermer</a>
                 <img src="{{ asset('img/works/thumbs/1.png') }}" alt="" />
                 <div>
                   <h3>Site <span>/Projet de formation/</span></h3>
@@ -153,12 +159,12 @@
               </div>
             </li>
             <li>
-              <a href="{{ asset('img/works/thumbs/2.png') }}">
-								<img src="#" alt="">
+              <a href="http://www.ericdelangle.com/velov">
+								<img src="{{ asset('img/works/thumbs/2.png') }}" alt="">
 								<span>Javascript</span>
 							</a>
               <div class="lb-overlay" id="image-2">
-                <a href="home" class="lb-close">x Fermer</a>
+                <a href="{{ path('home') }}" class="lb-close">X Fermer</a>
                 <img src="{{ asset('img/works/thumbs/2.png') }}" alt="" />
                 <div>
                   <h3>Site <span>/Projet de formation/</span></h3>
@@ -168,12 +174,12 @@
               </div>
             </li>
             <li>
-              <a href="{{ asset('img/works/thumbs/3.png') }}">
-								<img src="#" alt="">
+              <a href="http://www.ericdelangle.com/ecrivain">
+								<img src="{{ asset('img/works/thumbs/3.png') }}" alt="">
 								<span>PHP</span>
 							</a>
               <div class="lb-overlay" id="image-3">
-                <a href="#page" class="lb-close">x Fermer</a>
+                <a href="{{ path('home') }}" class="lb-close">X Fermer</a>
                 <img src="{{ asset('img/works/thumbs/3.png') }}" alt="" />
                 <div>
                   <h3>Site <span>/Projet de formation/</span></h3>
@@ -183,12 +189,12 @@
               </div>
             </li>
             <li>
-              <a href="{{ asset('img/works/thumbs/4.png') }}">
-								<img src="#" alt="">
+              <a href="http://www.avenuedesartistes.com/">
+								<img src="{{ asset('img/works/thumbs/4.png') }}" alt="">
 								<span>Symfony</span>
 							</a>
               <div class="lb-overlay" id="image-4">
-                <a href="#page" class="lb-close">x Fermer</a>
+                <a href="{{ path('home') }}" class="lb-close">X Fermer</a>
                 <img src="{{ asset('img/works/thumbs/4.png') }}" alt="" />
                 <div>
                   <h3>Site pero<span>/L'avenue des artistes/</span></h3>
@@ -237,7 +243,7 @@
                   <div class="col-md-offset-2 col-md-8">
                   <div id="sendmessage">Votre message a bien été envoyé. Merci !</div>
                   <div id="errormessage"></div>
-                  <div id="contactForm">
+                  <div>
                     {{ form_start(form)}}
                     {{ form_row(form.name, {'attr': {'placeholder': "Votre nom"}})}} 
                     {{ form_row(form.email, {'attr': {'placeholder': "Votre email"}})}} 
@@ -246,7 +252,7 @@
                     
                       <div class="form-group">
                       
-                          <div class="text-center"><button type="submit" class="btn btn-theme btn-lg btn-block">Envoyer un message</button></div>
+                          <div class="text-center"><button type="submit" class="btn btn-success btn-lg btn-block">Envoyer un message</button></div>
                       
                       </div>
   
@@ -263,13 +269,7 @@
       
      
           <div class="credits">
-            <!--
-              All the links in the footer should remain intact.
-              You can delete the links only if you purchased the pro version.
-              Licensing information: https://bootstrapmade.com/license/
-              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Mamba
-            -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> et codé par mes soins.
+            Thème Bootstrap et architecture Symfony.
           </div>
 
         
@@ -284,6 +284,6 @@
   <script src="js/jquery.dlmenu.js"></script>
   <script src="js/wow.min.js"></script>
   <script src="js/custom.js"></script>
-  <script src="contactform/contactform.js"></script>
+  
 
 {% endblock %}
